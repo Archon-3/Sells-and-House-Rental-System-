@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Betachn</title>
+ <link rel="stylesheet" href="./signUp.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2 style="margin-bottom: 20px;">Sign Up</h2>
+        
+        <form id="signupForm" action="register" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email (optional)</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number (+251)</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmpassword">ConfirmPassword</label>
+                <input type="password" id="password" name="confirmpassword" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="gender-group">
+                    <label>
+                        <input type="radio" name="gender" value="male" required> Male
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female" required> Female
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="./LoginTo.html">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const phone = document.getElementById('phone').value.trim();
+            
+            // Remove any spaces or special characters
+            const cleanPhone = phone.replace(/\s+/g, '');
+            
+            // Check if it starts with +251 and followed by exactly 9 digits
+            if (!cleanPhone.startsWith('+251') || cleanPhone.length !== 13) {
+                alert('Phone number must start with +251 followed by 9 digits');
+                return false;
+            }
+            
+            // Check if all characters after +251 are digits
+            const digits = cleanPhone.substring(4);
+            if (!/^\d{9}$/.test(digits)) {
+                alert('Please enter exactly 9 digits after +251');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Show error message if login failed
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('error') === '1') {
+            document.getElementById('error-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+@charset "UTF-8";
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px 40px;
+    position: sticky;
+    top: 0px;
+    z-index: 900;
+}
+
+.logo {
+    font-size: 1.5em;
+    color: #fca311;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    margin: 0 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fca311;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#search-bar {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+#filterHouses {
+    padding: 8px 12px;
+    background-color: #fca311;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#filterHouses:hover {
+    background-color: #e89e08;
+}
+
+/* Hero section */
+.hero-section {
+    height: 100vh;
+    background: url('./images/backgroundimage.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    text-shadow: 2px 2px 4px black;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #0e0d0df4;
+    font-weight: bold;
+    font-size: larger;
+}
+.cta-button a{
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+
+}
+
+.cta-button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background-color: #fca311;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+    background-color: #e89e08;
+    transform: scale(1.05);
+}
+
+/* About section */
+.about-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.about-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #fca311;
+}
+
+.about-section p {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Contact section */
+.contact-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #333;
+    color: white;
+}
+
+.contact-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fca311;
+    font-size: 1.2em;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}

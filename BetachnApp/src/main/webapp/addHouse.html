@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add House</title>
+    <link rel="stylesheet" href="./addHouse.css">
+</head>
+<body>
+    <header class="hero-section">
+        <nav class="navbar">
+            <div class="logo">Betachn</div>
+            <ul class="nav-links">
+                <a href="./home.html">Home</a>
+                <a href="./forRent.html">For Rent</a>
+                <a href="./forBuy.html">For Buy</a>
+                <a href="./addHouse.html">Add House</a>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by location..." id="search-bar">
+                <button id="filterHouses">Search</button>
+            </div>
+        </nav>
+    </header>
+
+    <form id="addHouseForm" method="post" enctype="multipart/form-data" action="AddHouseServlet">
+        <label for="houseImage">Upload House Image:</label>
+        <input type="file" id="houseImage" name="houseImage" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="price">Price (ETB):</label>
+        <input type="number" id="price" name="price" placeholder="Enter price" min="0" step="50" required><br><br>
+
+        <label for="phone">Ethiopian Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+251..." required>
+        <span id="error" style="color: red; display: none;">Invalid Ethiopian number!</span><br><br>
+
+        <label for="condition">Condition:</label>
+        <select id="condition" name="condition" required>
+            <option value="sell">For Sale</option>
+            <option value="rent">For Rent</option>
+        </select><br><br>
+
+        <button type="submit">Add House</button>
+    </form>
+    
+    <script src="./js/add.js"></script> <!-- Linking JavaScript -->
+</body>
+</html>

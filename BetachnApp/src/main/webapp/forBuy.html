@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Betachn</title>
+ <link rel="stylesheet" href="./buyRent.css">
+</head>
+<body>
+  <header class="hero-section">
+    <nav class="navbar">
+        <div class="logo">Betachn</div>
+        <ul class="nav-links">
+            <a href="./home.html">Home</a>
+            <a href="./forRent.html">For Rent</a>
+            <a href="./forBuy.html">For Buy</a>
+            <a href="./addHouse.html">Add House</a>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search by location..." id="search-bar">
+            <button id="filterHouses">Search</button>
+        </div>
+    </nav>
+</header>
+  <main>
+    <div class="filters">
+      <label for="price-filter">Max Price:</label>
+      <input type="number" id="price-filter" placeholder="Enter max price" oninput="filterHouses()">
+    </div>
+
+    <section class="house-list">
+      <!-- Default Houses -->
+      <div class="house-card" data-price="50,000,000" data-location="Cmc Bole, Adiss Ababa">
+        <img src="./images/sell houses/cmc bole/modern-g2-house-for-sale-addis-ababa-ethiopia-image-12.jpg" alt="House Image">
+        <p>Description: Cozy 6-bedroom house with a garden on 260m2 it is G+2.</p>
+        <p>Price: 50,000,000 ETB</p>
+        <p>Location: Cmc Bole, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******10">+2519******10</a></p>
+      </div>
+      <div class="house-card" data-price="20,000,000" data-location="Betel kolfe keranio, Adiss Ababa">
+        <img src="./images/sell houses/kolfe/05f8c5a031ea39-g1-house-for-sale-kolfe-keranio-addis-ababa.jpg" alt="House Image">
+        <p>Description: Spacious villa in the city Having 12 bads on 250m2 it is G+1</p>
+        <p>Price: 20,000,000 ETB</p>
+        <p>Location: Betel kolfe keranio, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******97">+2519******97</a></p>
+      </div>
+      <div class="house-card" data-price="35,000,000" data-location="Ayat, Adiss Ababa">
+        <img src="./images/sell houses/Ayat/download (3).jpg" alt="House Image">
+        <p>Description: Modern villa with 7 Badrooms on 250m2 and it is G+2
+        </p>
+        <p>Price: 35,000,000 ETB</p>
+        <p>Location: Ayat, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******22">+2519******22</a></p>
+      </div>
+      <div class="house-card" data-price="26,000,000" data-location="Summit, Adiss Ababa">
+        <img src="./images/sell houses/summit/062187e338f32a-beautiful-new-g1-house-in-addis-ababa-summit-zg-10163-detached-duplexes-for-sale-bole-addis-ababa.jpg" alt="House Image">
+        <p>Description: Affordable 5 Bad Room house with Wide Area for Parcking and it is G+1.</p>
+        <p>Price: 26,000,000 ETB</p>
+        <p>Location: summit, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******64">+2519******64</a></p>
+      </div>
+      <div class="house-card" data-price="15,000,000" data-location="Akaky kaliti, Adiss Ababa">
+        <img src="./images/sell houses/akaky/images.jpg" alt="House Image">
+        <p>Description: G+3 House for Sale
+            Location: Kality, around Moenco
+            Total Area: 172m2
+            Built-up area: 145m2
+        </p>
+        <p>Price: 15,000,000 ETB</p>
+        <p>Location: Akaky kaliti, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******64">+2519******64</a></p>
+      </div>
+      
+    </section>
+  </main>
+
+  <script src="./js/rent.js"></script>
+</body>
+</html>
+
+</body>
+</html>

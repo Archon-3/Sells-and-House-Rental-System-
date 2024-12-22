@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Betachn</title>
+ <link rel="stylesheet" href="./buyRent.css">
+</head>
+<body>
+  <header class="hero-section">
+    <nav class="navbar">
+        <div class="logo">Betachn</div>
+        <ul class="nav-links">
+            <a href="./home.html">Home</a>
+            <a href="./forRent.html">For Rent</a>
+            <a href="./forBuy.html">For Buy</a>
+            <a href="./addHouse.html">Add House</a>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search by location..." id="search-bar">
+            <button id="filterHouses">Search</button>
+        </div>
+    </nav>
+</header>
+  <main>
+    <div class="filters">
+      <label for="price-filter">Max Price:</label>
+      <input type="number" id="price-filter" placeholder="Enter max price" oninput="filterHouses()">
+    </div>
+
+    <section class="house-list">
+      <!-- Default Houses -->
+      <div class="house-card" data-price="120,000" data-location="Bole, Adiss Ababa">
+        <img src="./images/rental houses/download (1).jpg" alt="House Image">
+        <p>Description: Cozy 5-bedroom house with a garden.</p>
+        <p>Price: 120,000 ETB</p>
+        <p>Location: Bole, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******10">+2519******10</a></p>
+      </div>
+      <div class="house-card" data-price="52000" data-location="Bole, Adiss Ababa">
+        <img src="./images/rental houses/download (2).jpg" alt="House Image">
+        <p>Description: Spacious villa in the city center.</p>
+        <p>Price: 52,000 ETB</p>
+        <p>Location: Bole, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******97">+2519******97</a></p>
+      </div>
+      <div class="house-card" data-price="62,000" data-location="Ayat, Adiss Ababa">
+        <img src="./images/rental houses/download.jpg" alt="House Image">
+        <p>Description: Modern villa with a swimming pool At back and 
+            Have 4 Bad Rooms
+        </p>
+        <p>Price: 62,000 ETB</p>
+        <p>Location: Ayat, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******22">+2519******22</a></p>
+      </div>
+      <div class="house-card" data-price="18000" data-location="Megenagna, Adiss Ababa">
+        <img src="./images/rental houses/images.jpg" alt="House Image">
+        <p>Description: Affordable 4 Bad Room house with Wide Area for Parcking.</p>
+        <p>Price: 18,000 ETB</p>
+        <p>Location: Megenagna, Adiss Ababa</p>
+        <p>The honer Phone: <a href="tell:+2519******64">+2519******64</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./js/rent.js"></script>
+</body>
+</html>
+
+</body>
+</html>
