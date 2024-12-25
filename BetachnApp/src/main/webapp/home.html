@@ -1,9 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Betachn</title>
-<link rel="stylesheet" href="./home.css">
+    <meta charset="UTF-8">
+    <title>Betachn</title>
+    <link rel="stylesheet" href="./home.css">
+    <style>
+        /* Profile dropdown styles */
+        .profile-icon {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .profile-menu a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+        }
+        .profile-menu a:hover {
+            background-color: #f1f1f1;
+        }
+        .profile-icon img {
+            width: 40px; /* Set width */
+            height: 40px; /* Set height */
+            border-radius: 50%; /* Make it circular */
+            object-fit: cover; /* Ensure image fits within circle */
+            cursor: pointer; /* Indicate it's clickable */
+            border: 2px solid #ccc; /* Optional border */
+        }
+    </style>
 </head>
 <body>
     <header class="hero-section">
@@ -19,10 +52,19 @@
                 <input type="text" placeholder="Search by location..." id="search-bar">
                 <button id="filterHouses">Search</button>
             </div>
+            <!-- Profile Icon and Dropdown -->
+            <div class="profile-icon">
+                <img src="./profile-icon.png" alt="Profile Icon" id="profileIcon">
+                <div class="profile-menu" id="profileMenu">
+                    <a href="./changeProfileImage.html">Change Profile Image</a>
+                    <a href="./accountManagement.html">Account Management</a>
+                    <a href="./LogoutServlet">Logout</a>
+                </div>
+            </div>
         </nav>
         <div class="hero-content">
             <h1>Welcome to Betachn</h1>
-            <p>we understand the complexities and challenges of buying, renting, and selling homes.</p>
+            <p>We understand the complexities and challenges of buying, renting, and selling homes.</p>
             <p>Our mission is to provide a seamless and reliable platform that connects buyers,</p>  
             <p>renters, and sellers directly—without the interference of brokers or middlemen.</p>  
             <button class="cta-button"><a href="./exploreMore.html">Explore More</a></button>
@@ -46,8 +88,26 @@
     <footer>
         <p>&copy; 2024 Betachn. All rights reserved.</p>
     </footer>
-</body>
-</html>
 
+    <script>
+        // Toggle profile menu visibility on click
+        const profileIcon = document.getElementById('profileIcon');
+        const profileMenu = document.getElementById('profileMenu');
+
+        profileIcon.addEventListener('click', () => {
+            if (profileMenu.style.display === 'block') {
+                profileMenu.style.display = 'none';
+            } else {
+                profileMenu.style.display = 'block';
+            }
+        });
+
+        // Close the menu if clicking outside the profile icon
+        window.addEventListener('click', (event) => {
+            if (!profileIcon.contains(event.target) && !profileMenu.contains(event.target)) {
+                profileMenu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
