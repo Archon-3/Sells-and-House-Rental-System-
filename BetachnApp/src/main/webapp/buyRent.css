@@ -123,4 +123,50 @@ body {
     gap: 20px;
     padding: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+/* Container for the house card */
+.house-card-container {
+    position: relative;
+    width: 300px;  /* Adjust the width of the card */
+    margin: 10px;
+}
+
+/* Style for the status (available/sold) text */
+.state {
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Style for the house card */
+.house-card {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Optional: Add some image styling */
+.house-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
     

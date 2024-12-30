@@ -5,36 +5,63 @@
     <title>Betachn</title>
     <link rel="stylesheet" href="./home.css">
     <style>
-        /* Profile dropdown styles */
-        .profile-icon {
-            position: relative;
-            display: inline-block;
+        .admin-btn {
+            display: none; /* Initially hidden */
+            background-color: orange;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
         }
-        .profile-menu {
+        .admin-btn:hover {
+            background-color: #cc7700;
+        }
+                .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            background-color: white;
+            height: 4px;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-icon:hover div {
+            background-color: #fca311;
+        }
+
+        .dropdown-menu {
             display: none;
             position: absolute;
-            right: 0;
-            background-color: white;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+            top: 60px;
+            right: 40px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
             border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
-        .profile-menu a {
-            color: black;
-            padding: 10px 15px;
+
+        .dropdown-menu a {
             text-decoration: none;
+            color: white;
             display: block;
+            padding: 5px 0;
+            font-size: 16px;
         }
-        .profile-menu a:hover {
-            background-color: #f1f1f1;
-        }
-        .profile-icon img {
-            width: 40px; /* Set width */
-            height: 40px; /* Set height */
-            border-radius: 50%; /* Make it circular */
-            object-fit: cover; /* Ensure image fits within circle */
-            cursor: pointer; /* Indicate it's clickable */
-            border: 2px solid #ccc; /* Optional border */
+
+        .dropdown-menu a:hover {
+            color: #fca311;
         }
     </style>
 </head>
@@ -47,19 +74,23 @@
                 <a href="./forRent.html">For Rent</a>
                 <a href="./forBuy.html">For Buy</a>
                 <a href="./addHouse.html">Add House</a>
+                <a href="./orderPage.html">Order</a>
             </ul>
             <div class="search-bar">
                 <input type="text" placeholder="Search by location..." id="search-bar">
                 <button id="filterHouses">Search</button>
             </div>
-            <!-- Profile Icon and Dropdown -->
-            <div class="profile-icon">
-                <img src="./profile-icon.png" alt="Profile Icon" id="profileIcon">
-                <div class="profile-menu" id="profileMenu">
-                    <a href="./changeProfileImage.html">Change Profile Image</a>
-                    <a href="./accountManagement.html">Account Management</a>
-                    <a href="./LogoutServlet">Logout</a>
-                </div>
+            <!-- Admin Button (conditionally shown) -->
+            <button id="adminBtn" class="admin-btn">Admin</button>
+             <div class="menu-icon" id="menuIcon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="./LogoutServlet">Logout</a>
             </div>
         </nav>
         <div class="hero-content">
@@ -90,22 +121,36 @@
     </footer>
 
     <script>
-        // Toggle profile menu visibility on click
-        const profileIcon = document.getElementById('profileIcon');
-        const profileMenu = document.getElementById('profileMenu');
+        // Fetch admin status from the servlet
+        fetch('./CheckAdminServlet')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isAdmin) { // Assuming the servlet returns { isAdmin: true } for valid admin users
+                    const adminBtn = document.getElementById('adminBtn');
+                    adminBtn.style.display = 'inline-block'; // Show the admin button
+                    adminBtn.style.background = 'blue';
+                    adminBtn.addEventListener('click', () => {
+                        window.location.href = './adminpage.html'; // Redirect to the admin page
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching admin status:', error);
+            });
+    </script>
+     <script>
+        // Toggle dropdown menu visibility
+        const menuIcon = document.getElementById('menuIcon');
+        const dropdownMenu = document.getElementById('dropdownMenu');
 
-        profileIcon.addEventListener('click', () => {
-            if (profileMenu.style.display === 'block') {
-                profileMenu.style.display = 'none';
-            } else {
-                profileMenu.style.display = 'block';
-            }
+        menuIcon.addEventListener('click', () => {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
         });
 
-        // Close the menu if clicking outside the profile icon
-        window.addEventListener('click', (event) => {
-            if (!profileIcon.contains(event.target) && !profileMenu.contains(event.target)) {
-                profileMenu.style.display = 'none';
+        // Close the dropdown menu if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!menuIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
             }
         });
     </script>

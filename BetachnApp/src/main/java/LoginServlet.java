@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -34,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         ResultSet resultSet = null;
 
         try {
-            // Load MySQL JDBC driver (if required for your setup)
+            // Load MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish connection
@@ -50,11 +51,16 @@ public class LoginServlet extends HttpServlet {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // Login successful, redirect to success page
+                // If credentials are valid, create a session and store the user's phone number
+                HttpSession session = request.getSession();
+                session.setAttribute("phoneNumber", phone); // Store phone number in session
+                session.setMaxInactiveInterval(60*60*72);
+
+                // Redirect to the home page
                 response.sendRedirect("home.html");
             } else {
                 // Login failed, redirect back to login page with error
-                response.sendRedirect("login.html?error=1");
+                response.sendRedirect("LoginTo.html?error=1");
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -62,15 +68,9 @@ public class LoginServlet extends HttpServlet {
         } finally {
             // Close the resources
             try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

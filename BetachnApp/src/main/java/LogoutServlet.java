@@ -15,9 +15,10 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession(false); // Fetch the current session, do not create a new one
         if (session != null) {
             session.invalidate(); // End the session
+            // Redirect to the login page
+            response.sendRedirect("LoginTo.html");
         }
 
-        // Redirect to the login page
-        response.sendRedirect("LoginTo.html");
+   
     }
 }
