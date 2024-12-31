@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="adminpage.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Admin Panel</div>
+        <button class="logout-btn">Logout</button>
+    </header>
+    <main class="content">
+        <h1>Admin Dashboard</h1>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h2>All Houses</h2>
+                <p id="all-houses-count">Loading...</p>
+            </div>
+            <div class="grid-item">
+                <h2>Rent</h2>
+                <p id="rent-count">Loading...</p>
+            </div>
+            <div class="grid-item">
+                <h2>Sell</h2>
+                <p id="sell-count">Loading...</p>
+            </div>
+            <div class="grid-item">
+                <h2>Available</h2>
+                <p id="available-count">Loading...</p>
+            </div>
+            <div class="grid-item">
+                <h2>Unavailable</h2>
+                <p id="unavailable-count">Loading...</p>
+            </div>
+            <div class="grid-item">
+                <h2>Users</h2>
+                <p id="users-count">Loading...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    
+    	function loadHouses() {
+        // Fetch data from the servlet
+        fetch("AdminPageDataServlet") // Ensure this path is correct based on your project structure
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    console.error("Error:", data.error);
+                    return;
+                }
+
+                // Update counts in the dashboard
+                document.getElementById("all-houses-count").textContent = data.allHouses || 0;
+                document.getElementById("rent-count").textContent = data.rent || 0;
+                document.getElementById("sell-count").textContent = data.sell || 0;
+                document.getElementById("available-count").textContent = data.available || 0;
+                document.getElementById("unavailable-count").textContent = data.unavailable || 0;
+                document.getElementById("users-count").textContent = data.users || 0;
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+        
+    	}
+        window.onload = loadHouses;
+
+    </script>
+</body>
+</html>
