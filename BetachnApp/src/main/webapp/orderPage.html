@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betachn - For Rent</title>
+    <link rel="stylesheet" href="./buyRent.css">
+</head>
+<body>
+    <header class="hero-section">
+        <nav class="navbar">
+            <div class="logo">Betachn</div>
+            <ul class="nav-links">
+                <a href="./home.html">Home</a>
+                <a href="./forRent.html">For Rent</a>
+                <a href="./forBuy.html">For Buy</a>
+                <a href="./addHouse.html">Add House</a>
+                <a href="./orderPage.html">Order</a>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by location..." id="search-bar">
+                <button id="filterHouses">Search</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Accommodations</h1>
+
+        <!-- Dynamic section for house cards -->
+        <section class="house-list" id="house-list">
+            <!-- Cards will be dynamically inserted here from the servlet -->
+        </section>
+    </main>
+
+    <script>
+        // Fetch house data for rent from the servlet and render cards dynamically
+        function loadHouses() {
+            fetch('OrderServlet')
+                .then(response => response.text())  // Get the response as HTML
+                .then(data => {
+                    document.getElementById('house-list').innerHTML = data;  // Insert HTML into the page
+                })
+                .catch(error => {
+                    console.error('Error fetching house data:', error);
+                });
+        }
+
+        // Call the function to load houses when the page loads
+        window.onload = loadHouses;
+
+     // Function to handle the delist action
+        function delistHouse(houseId) {
+            // Send a request to the DelistServlet to update the status to 'Unavailable'
+            fetch('DelistServlet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'houseId=' + houseId  // Send houseId as part of the request body
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    // Find the house card and update the status to "Unavailable"
+                    const houseCard = document.querySelector(`.house-card[data-id="${houseId}"]`);
+                    houseCard.querySelector('.state').innerText = 'Unavailable'; // Update the state to unavailable
+                } else {
+                    alert('Error delisting the house.');
+                }
+            })
+            .catch(error => {
+                console.error('Error delisting house:', error);
+            });
+        }
+
+
+    </script>
+</body>
+</html>
